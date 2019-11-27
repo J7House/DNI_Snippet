@@ -1,0 +1,27 @@
+<script type="text/javascript">
+		let numbers = [{ "name":"google", "number":"123-123-1111"}, {"name":"facebook", "number":"321-123-4321"}];
+		let windowURL = window.location.href;
+		let utmSource = getParameterByName("utm_source", windowURL);
+		document.getElementById("utm_source_value").innerHTML = utmSource;
+		let utmMedium = getParameterByName("utm_medium", windowURL);
+		document.getElementById("utm_medium_value").innerHTML = utmMedium;
+		function getParameterByName(name, url) {
+		    if (!url) url = window.location.href;
+		    name = name.replace(/[\[\]]/g, "\\$&");
+		    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		        results = regex.exec(url);
+		    if (!results) return null;
+		    if (!results[2]) return '';
+		    return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+		let campaignNumber = '616-371-2244';
+		for (var i = 0; i < numbers.length; i++){
+		  if (numbers[i].name == utmSource){
+		    document.getElementById("number_value").innerHTML = '<a href="tel:'+numbers[i].number+'" target="_blank">'+numbers[i].number+'</a>';
+		    campaignNumber = numbers[i].number;
+		  }
+		}
+        document.onreadystatechange = function () {
+        	document.head.innerHTML = document.head.innerHTML.replace(/6163712244/g,campaignNumber);
+        }
+	</script>
